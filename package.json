@@ -1,0 +1,27 @@
+{
+  "name": "damale-cbt",
+  "version": "1.0.0",
+  "description": "DAMALE SCHOOL KATSINA - Online Examination System (CBT)",
+  "main": "server/server.js",
+  "scripts": {
+    "server": "npm run dev --prefix server",
+    "client": "npm run dev --prefix client",
+    "dev": "node start-all.js",
+    "install:all": "npm install && npm install --prefix server && npm install --prefix client",
+    "seed": "npm run seed --prefix server",
+    "build": "npm run build --prefix client"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "keywords": [
+    "cbt",
+    "examination",
+    "damale-school-katsina",
+    "react",
+    "express",
+    "mongodb"
+  ],
+  "author": "DAMALE SCHOOL KATSINA",
+  "license": "ISC"
+}
