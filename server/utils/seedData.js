@@ -318,7 +318,7 @@ const seedAll = async () => {
       title: '⏰ Exam Schedule Notice',
       content: 'Mathematics examination is available for SS 3A and SS 3B. English Language test is available for SS 3A. Results are shown immediately after submission.',
       targetAudience: 'Students',
-      priority: 'Medium',
+      priority: 'high',
       author: adminUser._id
     });
 
