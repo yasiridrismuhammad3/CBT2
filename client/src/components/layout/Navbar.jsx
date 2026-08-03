@@ -21,29 +21,29 @@ const Navbar = ({ onToggleSidebar }) => {
   };
 
   return (
-    <header className="sticky top-0 z-30 bg-white/80 dark:bg-damale-navy-800/90 backdrop-blur-lg border-b border-slate-200 dark:border-damale-navy-700/60 transition-colors duration-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <header className="sticky top-0 z-30 bg-white/90 dark:bg-damale-navy-800/90 backdrop-blur-lg border-b border-slate-200 dark:border-damale-navy-700/60 transition-colors duration-200">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-2">
         
         {/* Left Side: Brand Logo & Title */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3 min-w-0">
           <button
             onClick={onToggleSidebar}
-            className="p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-damale-navy-700 transition"
+            className="p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-damale-navy-700 transition flex-shrink-0"
             aria-label="Toggle Sidebar"
           >
             <Menu className="w-5 h-5" />
           </button>
 
-          <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('/')}>
+          <div className="flex items-center gap-2.5 cursor-pointer min-w-0" onClick={() => navigate('/')}>
             {/* School Logo Emblem */}
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-damale-gold-500 to-amber-600 flex items-center justify-center text-white font-extrabold text-lg shadow-lg shadow-amber-500/30 ring-2 ring-damale-gold-300">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-damale-gold-500 to-amber-600 flex items-center justify-center text-white font-extrabold text-sm sm:text-lg shadow-lg shadow-amber-500/30 ring-2 ring-damale-gold-300 flex-shrink-0">
               DSK
             </div>
-            <div>
-              <h1 className="font-extrabold text-sm sm:text-base tracking-wider text-damale-navy-800 dark:text-white uppercase leading-tight">
+            <div className="min-w-0">
+              <h1 className="font-extrabold text-xs sm:text-base tracking-wider text-damale-navy-800 dark:text-white uppercase leading-tight truncate">
                 DAMALE SCHOOL <span className="text-damale-gold-500 dark:text-damale-gold-400">KATSINA</span>
               </h1>
-              <p className="text-[10px] font-medium text-slate-500 dark:text-slate-400 tracking-widest uppercase">
+              <p className="text-[9px] sm:text-[10px] font-medium text-slate-500 dark:text-slate-400 tracking-widest uppercase truncate hidden sm:block">
                 Online Examination System (CBT)
               </p>
             </div>
@@ -51,9 +51,9 @@ const Navbar = ({ onToggleSidebar }) => {
         </div>
 
         {/* Right Side: Quick Switch, Theme Toggle, User Profile */}
-        <div className="flex items-center gap-2 sm:gap-4">
+        <div className="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
           
-          {/* Quick Demo Role Switcher Toolbar */}
+          {/* Quick Demo Role Switcher Toolbar (Desktop) */}
           <div className="hidden lg:flex items-center bg-slate-100 dark:bg-damale-navy-900 p-1 rounded-xl border border-slate-200 dark:border-damale-navy-700 text-xs font-semibold">
             <span className="px-2 text-slate-400 text-[10px] uppercase font-bold tracking-wider">Demo Switch:</span>
             <button
@@ -91,23 +91,23 @@ const Navbar = ({ onToggleSidebar }) => {
           {/* Dark / Light Mode Toggle Button */}
           <button
             onClick={toggleTheme}
-            className="p-2.5 rounded-xl bg-slate-100 dark:bg-damale-navy-700/60 text-slate-600 dark:text-slate-300 hover:text-damale-gold-500 dark:hover:text-damale-gold-400 transition"
+            className="p-2 sm:p-2.5 rounded-xl bg-slate-100 dark:bg-damale-navy-700/60 text-slate-600 dark:text-slate-300 hover:text-damale-gold-500 dark:hover:text-damale-gold-400 transition"
             title="Toggle Light / Dark Mode"
           >
-            {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+            {darkMode ? <Sun className="w-4 h-4 sm:w-5 sm:h-5" /> : <Moon className="w-4 h-4 sm:w-5 sm:h-5" />}
           </button>
 
           {/* User Profile Info */}
           {user ? (
-            <div className="flex items-center gap-3 pl-2 border-l border-slate-200 dark:border-damale-navy-700">
-              <div className="hidden sm:block text-right">
+            <div className="flex items-center gap-2 sm:gap-3 pl-1.5 sm:pl-2 border-l border-slate-200 dark:border-damale-navy-700">
+              <div className="hidden md:block text-right">
                 <p className="text-xs font-bold text-slate-800 dark:text-slate-100">{user.fullName}</p>
                 <span className="inline-block px-2 py-0.5 text-[10px] font-extrabold uppercase rounded-full bg-damale-gold-500/10 text-damale-gold-600 dark:text-damale-gold-400 border border-damale-gold-500/20">
                   {user.role} {user.class ? `(${user.class})` : ''}
                 </span>
               </div>
 
-              <div className="w-9 h-9 rounded-xl bg-damale-navy-700 text-white font-bold flex items-center justify-center ring-2 ring-damale-gold-400/40">
+              <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-damale-navy-700 text-white font-bold flex items-center justify-center ring-2 ring-damale-gold-400/40 text-xs sm:text-sm">
                 {user.fullName.charAt(0).toUpperCase()}
               </div>
 
@@ -116,7 +116,7 @@ const Navbar = ({ onToggleSidebar }) => {
                   logout();
                   navigate('/');
                 }}
-                className="p-2 rounded-xl text-slate-400 hover:text-red-500 hover:bg-red-500/10 transition"
+                className="p-1.5 sm:p-2 rounded-xl text-slate-400 hover:text-red-500 hover:bg-red-500/10 transition"
                 title="Logout"
               >
                 <LogOut className="w-4 h-4" />
@@ -125,7 +125,7 @@ const Navbar = ({ onToggleSidebar }) => {
           ) : (
             <button
               onClick={() => navigate('/auth/student')}
-              className="btn-gold text-xs py-2 px-4"
+              className="btn-gold text-xs py-2 px-3 sm:px-4"
             >
               Portal Login
             </button>

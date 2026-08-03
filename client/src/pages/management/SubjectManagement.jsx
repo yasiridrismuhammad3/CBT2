@@ -52,19 +52,19 @@ const SubjectManagement = () => {
 
   return (
     <div className="space-y-8">
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2">
-            <BookOpen className="w-7 h-7 text-emerald-500" /> Academic Subjects & Classes
+          <h1 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+            <BookOpen className="w-6 h-6 sm:w-7 sm:h-7 text-emerald-500" /> Academic Subjects & Classes
           </h1>
           <p className="text-xs text-slate-500">Configure subjects and grade levels for CBT exam targeting.</p>
         </div>
 
-        <div className="flex gap-3">
-          <button onClick={() => setShowClassModal(true)} className="btn-navy text-xs py-2.5 px-4 border border-damale-navy-600">
+        <div className="flex flex-wrap gap-2 sm:gap-3 w-full sm:w-auto">
+          <button onClick={() => setShowClassModal(true)} className="btn-navy text-xs py-2.5 px-4 border border-damale-navy-600 flex-1 sm:flex-initial">
             <Plus className="w-4 h-4" /> Add Class
           </button>
-          <button onClick={() => setShowSubjectModal(true)} className="btn-gold text-xs py-2.5 px-4 font-bold uppercase">
+          <button onClick={() => setShowSubjectModal(true)} className="btn-gold text-xs py-2.5 px-4 font-bold uppercase flex-1 sm:flex-initial">
             <Plus className="w-4 h-4" /> Add Subject
           </button>
         </div>

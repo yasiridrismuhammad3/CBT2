@@ -35,11 +35,11 @@ const StudentLogin = () => {
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="w-full max-w-md glass-card p-8 bg-damale-navy-800/90 border border-damale-navy-700 shadow-2xl relative"
+        className="w-full max-w-md glass-card p-5 sm:p-8 bg-damale-navy-800/90 border border-damale-navy-700 shadow-2xl relative"
       >
         <button
           onClick={() => navigate('/')}
-          className="absolute top-6 left-6 text-slate-400 hover:text-white flex items-center gap-1 text-xs font-semibold"
+          className="absolute top-4 left-4 sm:top-6 sm:left-6 text-slate-400 hover:text-white flex items-center gap-1 text-xs font-semibold"
         >
           <ArrowLeft className="w-4 h-4" /> Home
         </button>

@@ -119,15 +119,15 @@ const QuestionBank = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2">
-            <HelpCircle className="w-7 h-7 text-damale-gold-500" /> CBT Question Bank Repository
+          <h1 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+            <HelpCircle className="w-6 h-6 sm:w-7 sm:h-7 text-damale-gold-500" /> CBT Question Bank Repository
           </h1>
           <p className="text-xs text-slate-500">Create, edit, preview and manage multiple choice questions with explanations.</p>
         </div>
 
         <button
           onClick={() => setShowAddModal(true)}
-          className="btn-gold text-xs py-2.5 px-4 font-bold uppercase tracking-wider"
+          className="btn-gold text-xs py-2.5 px-4 font-bold uppercase tracking-wider w-full sm:w-auto"
         >
           <Plus className="w-4 h-4" /> Add New Question
         </button>
@@ -170,9 +170,9 @@ const QuestionBank = () => {
       <div className="space-y-4">
         {questions.length > 0 ? (
           questions.map((q, idx) => (
-            <div key={q._id} className="glass-card p-5 space-y-3 hover:border-damale-gold-400/50 transition">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
+            <div key={q._id} className="glass-card p-4 sm:p-5 space-y-3 hover:border-damale-gold-400/50 transition">
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
                   <span className="px-2 py-0.5 rounded bg-damale-gold-500/20 text-damale-gold-400 font-bold text-[10px] uppercase">
                     {q.subject?.name || 'Subject'}
                   </span>
@@ -206,7 +206,7 @@ const QuestionBank = () => {
                 {idx + 1}. {q.questionText}
               </h3>
 
-              <div className="grid grid-cols-2 gap-2 text-xs">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                 {q.options.map((opt) => (
                   <div
                     key={opt.key}
@@ -233,7 +233,7 @@ const QuestionBank = () => {
       <AnimatePresence>
         {showAddModal && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm overflow-y-auto">
-            <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} className="glass-card bg-damale-navy-800 p-6 max-w-lg w-full space-y-4 my-8">
+            <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} className="glass-card bg-damale-navy-800 p-5 sm:p-6 max-w-lg w-full space-y-4 my-8 max-h-[90vh] overflow-y-auto">
               <div className="flex justify-between items-center border-b border-damale-navy-700 pb-3">
                 <h3 className="font-bold text-lg text-white">Add Question to Bank</h3>
                 <button onClick={() => setShowAddModal(false)}><X className="w-5 h-5 text-slate-400" /></button>

@@ -103,29 +103,29 @@ const AdminDashboard = () => {
     <div className="space-y-8">
       
       {/* Header Banner */}
-      <div className="glass-card p-6 sm:p-8 bg-gradient-to-r from-damale-navy-800 via-damale-navy-900 to-slate-900 border border-damale-navy-700/80 text-white flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+      <div className="glass-card p-5 sm:p-8 bg-gradient-to-r from-damale-navy-800 via-damale-navy-900 to-slate-900 border border-damale-navy-700/80 text-white flex flex-col md:flex-row justify-between items-start md:items-center gap-4 sm:gap-6">
         <div>
           <div className="flex items-center gap-2 text-damale-gold-400 font-bold text-xs uppercase tracking-wider mb-1">
             <ShieldCheck className="w-4 h-4" /> Super Administrator Portal
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+          <h1 className="text-xl sm:text-3xl font-extrabold tracking-tight">
             DAMALE SCHOOL KATSINA Overview
           </h1>
-          <p className="text-slate-300 text-sm mt-1">
+          <p className="text-slate-300 text-xs sm:text-sm mt-1">
             Full system control: Students, Teachers, CBT Question Bank & Results Analytics.
           </p>
         </div>
 
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-wrap gap-2 sm:gap-3 w-full md:w-auto">
           <button
             onClick={() => navigate('/management/students')}
-            className="btn-gold text-xs py-2.5 px-4"
+            className="btn-gold text-xs py-2.5 px-4 flex-1 md:flex-initial"
           >
             <Plus className="w-4 h-4" /> Add Student
           </button>
           <button
             onClick={() => navigate('/management/exams')}
-            className="btn-navy text-xs py-2.5 px-4 border border-damale-navy-600"
+            className="btn-navy text-xs py-2.5 px-4 border border-damale-navy-600 flex-1 md:flex-initial"
           >
             <FileSpreadsheet className="w-4 h-4" /> Manage Exams
           </button>
@@ -133,7 +133,7 @@ const AdminDashboard = () => {
       </div>
 
       {/* KPI Cards Grid */}
-      <div className="grid grid-cols-2 lg:grid-cols-6 gap-4 sm:gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-6">
         
         <div className="glass-card p-5 border-l-4 border-l-amber-500">
           <div className="flex justify-between items-start">

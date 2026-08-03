@@ -110,18 +110,18 @@ const ResultsAndAnalytics = () => {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2">
-            <Award className="w-7 h-7 text-damale-gold-500" /> CBT Class Marksheets & Reports
+          <h1 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+            <Award className="w-6 h-6 sm:w-7 sm:h-7 text-damale-gold-500" /> CBT Class Marksheets & Reports
           </h1>
           <p className="text-xs text-slate-500">View student score rankings, pass/fail analytics, and export PDF/Excel reports.</p>
         </div>
 
-        <div className="flex gap-3">
-          <button onClick={exportExcel} className="btn-navy text-xs py-2.5 px-4 border border-damale-navy-600">
-            <FileSpreadsheet className="w-4 h-4 text-emerald-400" /> Export Excel Spreadsheet
+        <div className="flex flex-wrap gap-2 sm:gap-3 w-full sm:w-auto">
+          <button onClick={exportExcel} className="btn-navy text-xs py-2.5 px-3.5 border border-damale-navy-600 flex-1 sm:flex-initial">
+            <FileSpreadsheet className="w-4 h-4 text-emerald-400" /> Export Excel
           </button>
-          <button onClick={exportPDF} className="btn-gold text-xs py-2.5 px-4 font-bold uppercase">
-            <Printer className="w-4 h-4" /> Export PDF Report
+          <button onClick={exportPDF} className="btn-gold text-xs py-2.5 px-4 font-bold uppercase flex-1 sm:flex-initial">
+            <Printer className="w-4 h-4" /> Export PDF
           </button>
         </div>
       </div>
@@ -142,20 +142,21 @@ const ResultsAndAnalytics = () => {
 
       {/* Marksheet Table */}
       <div className="glass-card overflow-hidden">
-        <table className="w-full text-left border-collapse text-xs">
-          <thead>
-            <tr className="bg-slate-100 dark:bg-damale-navy-900 border-b border-slate-200 dark:border-damale-navy-700 text-[11px] font-black uppercase text-slate-500 dark:text-slate-400">
-              <th className="p-4">Position</th>
-              <th className="p-4">DS Number</th>
-              <th className="p-4">Student Name</th>
-              <th className="p-4">Class</th>
-              <th className="p-4">Score</th>
-              <th className="p-4">Percentage</th>
-              <th className="p-4">Grade</th>
-              <th className="p-4">Status</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-slate-200 dark:divide-damale-navy-700/60">
+        <div className="overflow-x-auto min-w-full block">
+          <table className="w-full text-left border-collapse text-xs min-w-[650px]">
+            <thead>
+              <tr className="bg-slate-100 dark:bg-damale-navy-900 border-b border-slate-200 dark:border-damale-navy-700 text-[11px] font-black uppercase text-slate-500 dark:text-slate-400">
+                <th className="p-4">Position</th>
+                <th className="p-4">DS Number</th>
+                <th className="p-4">Student Name</th>
+                <th className="p-4">Class</th>
+                <th className="p-4">Score</th>
+                <th className="p-4">Percentage</th>
+                <th className="p-4">Grade</th>
+                <th className="p-4">Status</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-damale-navy-700/60">
             {results.length > 0 ? (
               results.map((r, idx) => (
                 <tr key={r._id} className="hover:bg-slate-100/50 dark:hover:bg-damale-navy-700/30">
@@ -184,6 +185,7 @@ const ResultsAndAnalytics = () => {
             )}
           </tbody>
         </table>
+        </div>
       </div>
     </div>
   );

@@ -23,17 +23,17 @@ const StudentProfile = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto space-y-8">
+    <div className="max-w-2xl mx-auto space-y-6 sm:space-y-8">
 
       {/* Student ID Badge Card */}
-      <div className="glass-card p-8 bg-gradient-to-br from-damale-navy-800 to-damale-navy-900 border border-damale-gold-500/40 space-y-6 relative overflow-hidden">
-        <div className="flex justify-between items-start">
-          <div className="flex items-center gap-4">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-damale-gold-500 to-amber-600 flex items-center justify-center text-white font-black text-2xl shadow-lg ring-4 ring-damale-gold-400/30">
+      <div className="glass-card p-5 sm:p-8 bg-gradient-to-br from-damale-navy-800 to-damale-navy-900 border border-damale-gold-500/40 space-y-6 relative overflow-hidden">
+        <div className="flex flex-col xs:flex-row justify-between items-start xs:items-center gap-4">
+          <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+            <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-damale-gold-500 to-amber-600 flex items-center justify-center text-white font-black text-xl sm:text-2xl shadow-lg ring-4 ring-damale-gold-400/30 flex-shrink-0">
               {user?.fullName?.charAt(0)}
             </div>
-            <div>
-              <h2 className="text-xl font-extrabold text-white">{user?.fullName}</h2>
+            <div className="min-w-0">
+              <h2 className="text-base sm:text-xl font-extrabold text-white truncate">{user?.fullName}</h2>
               <p className="text-xs text-damale-gold-400 font-mono font-bold">DS Number: {user?.dsNumber}</p>
               <p className="text-xs text-slate-300">Class: {user?.class} • Gender: {user?.gender}</p>
             </div>
@@ -46,8 +46,8 @@ const StudentProfile = () => {
       </div>
 
       {/* Change Password Card */}
-      <div className="glass-card p-6 space-y-4">
-        <h3 className="font-bold text-lg text-white flex items-center gap-2">
+      <div className="glass-card p-5 sm:p-6 space-y-4">
+        <h3 className="font-bold text-base sm:text-lg text-white flex items-center gap-2">
           <KeyRound className="w-5 h-5 text-damale-gold-500" /> Change Account Password
         </h3>
 

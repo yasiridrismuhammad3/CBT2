@@ -53,21 +53,21 @@ const StudentDashboard = () => {
     <div className="space-y-8">
       
       {/* Student Welcome Card */}
-      <div className="glass-card p-6 sm:p-8 bg-gradient-to-r from-damale-navy-800 via-damale-navy-900 to-slate-900 border border-damale-navy-700/80 text-white flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-        <div className="flex items-center gap-4">
-          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-damale-gold-500 to-amber-600 flex items-center justify-center text-white font-black text-2xl shadow-lg shadow-amber-500/20 ring-4 ring-damale-gold-400/30">
+      <div className="glass-card p-5 sm:p-8 bg-gradient-to-r from-damale-navy-800 via-damale-navy-900 to-slate-900 border border-damale-navy-700/80 text-white flex flex-col md:flex-row justify-between items-start md:items-center gap-4 sm:gap-6">
+        <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+          <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-damale-gold-500 to-amber-600 flex items-center justify-center text-white font-black text-xl sm:text-2xl shadow-lg shadow-amber-500/20 ring-4 ring-damale-gold-400/30 flex-shrink-0">
             {user?.fullName?.charAt(0)}
           </div>
-          <div>
+          <div className="min-w-0">
             <div className="flex items-center gap-2 text-damale-gold-400 font-bold text-xs uppercase tracking-wider mb-1">
               <GraduationCap className="w-4 h-4" /> Student CBT Portal
             </div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
-              Welcome back, {user?.fullName}!
+            <h1 className="text-xl sm:text-3xl font-extrabold tracking-tight truncate">
+              Welcome, {user?.fullName}!
             </h1>
-            <p className="text-slate-300 text-sm mt-1 flex items-center gap-3">
+            <p className="text-slate-300 text-xs sm:text-sm mt-1 flex flex-wrap items-center gap-2 sm:gap-3">
               <span>DS Number: <strong className="text-white font-mono">{user?.dsNumber}</strong></span>
-              <span>•</span>
+              <span className="hidden sm:inline">•</span>
               <span>Class: <strong className="text-damale-gold-400 font-bold">{user?.class}</strong></span>
             </p>
           </div>
@@ -75,9 +75,9 @@ const StudentDashboard = () => {
 
         <button
           onClick={() => navigate('/student/exams')}
-          className="btn-gold text-xs py-3 px-5 shadow-lg"
+          className="btn-gold text-xs py-2.5 sm:py-3 px-4 sm:px-5 shadow-lg w-full md:w-auto"
         >
-          <PlayCircle className="w-5 h-5" /> View Active Examinations
+          <PlayCircle className="w-4 h-4 sm:w-5 sm:h-5" /> View Active Examinations
         </button>
       </div>
 

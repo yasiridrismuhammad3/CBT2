@@ -135,17 +135,17 @@ const ExamResultView = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className={`glass-card p-8 border ${
+        className={`glass-card p-5 sm:p-8 border ${
           isPassed ? 'border-emerald-500/50 bg-emerald-950/20' : 'border-rose-500/50 bg-rose-950/20'
         } relative overflow-hidden`}
       >
         
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 sm:gap-6">
           <div className="space-y-2">
             <div className="flex items-center gap-2 text-damale-gold-400 font-bold text-xs uppercase tracking-wider">
               <Sparkles className="w-4 h-4" /> DAMALE SCHOOL KATSINA CBT
             </div>
-            <h1 className="text-2xl sm:text-3xl font-black text-white">
+            <h1 className="text-xl sm:text-3xl font-black text-white">
               {result.exam?.title}
             </h1>
             <p className="text-xs text-slate-300">
@@ -153,10 +153,10 @@ const ExamResultView = () => {
             </p>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 w-full md:w-auto">
             <button
               onClick={exportPDF}
-              className="btn-gold text-xs py-2.5 px-4 font-bold uppercase tracking-wider"
+              className="btn-gold text-xs py-2.5 px-4 font-bold uppercase tracking-wider w-full md:w-auto"
             >
               <Printer className="w-4 h-4" /> Export Official PDF Report
             </button>
@@ -164,32 +164,32 @@ const ExamResultView = () => {
         </div>
 
         {/* Score & Badge Showcase */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 pt-8 border-t border-slate-700/60 text-center">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-slate-700/60 text-center">
           
-          <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-700/60">
+          <div className="p-3 sm:p-4 rounded-xl bg-slate-900/60 border border-slate-700/60">
             <p className="text-xs font-bold text-slate-400 uppercase">Score</p>
-            <h3 className="text-3xl font-black mt-1 text-white">
-              {result.score} <span className="text-sm font-semibold text-slate-400">/ {result.totalMarks}</span>
+            <h3 className="text-2xl sm:text-3xl font-black mt-1 text-white">
+              {result.score} <span className="text-xs sm:text-sm font-semibold text-slate-400">/ {result.totalMarks}</span>
             </h3>
           </div>
 
-          <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-700/60">
+          <div className="p-3 sm:p-4 rounded-xl bg-slate-900/60 border border-slate-700/60">
             <p className="text-xs font-bold text-slate-400 uppercase">Percentage</p>
-            <h3 className="text-3xl font-black mt-1 text-damale-gold-400">
+            <h3 className="text-2xl sm:text-3xl font-black mt-1 text-damale-gold-400">
               {result.percentage}%
             </h3>
           </div>
 
-          <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-700/60">
+          <div className="p-3 sm:p-4 rounded-xl bg-slate-900/60 border border-slate-700/60">
             <p className="text-xs font-bold text-slate-400 uppercase">Grade</p>
-            <h3 className="text-3xl font-black mt-1 text-white">
+            <h3 className="text-2xl sm:text-3xl font-black mt-1 text-white">
               {result.grade}
             </h3>
           </div>
 
-          <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-700/60">
+          <div className="p-3 sm:p-4 rounded-xl bg-slate-900/60 border border-slate-700/60">
             <p className="text-xs font-bold text-slate-400 uppercase">Status</p>
-            <div className={`mt-1.5 inline-block px-3 py-1 rounded-full text-xs font-extrabold uppercase ${
+            <div className={`mt-1.5 inline-block px-2.5 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs font-extrabold uppercase ${
               isPassed
                 ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40'
                 : 'bg-rose-500/20 text-rose-400 border border-rose-500/40'

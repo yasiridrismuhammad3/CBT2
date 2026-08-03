@@ -45,24 +45,24 @@ const Announcements = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2">
-            <Bell className="w-7 h-7 text-amber-500" /> School CBT Announcement Board
+          <h1 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+            <Bell className="w-6 h-6 sm:w-7 sm:h-7 text-amber-500" /> School CBT Announcement Board
           </h1>
           <p className="text-xs text-slate-500">Post CBT timetable updates and examination instructions to student & teacher dashboards.</p>
         </div>
 
-        <button onClick={() => setShowModal(true)} className="btn-gold text-xs py-2.5 px-4 font-bold uppercase">
+        <button onClick={() => setShowModal(true)} className="btn-gold text-xs py-2.5 px-4 font-bold uppercase w-full sm:w-auto">
           <Plus className="w-4 h-4" /> Post Notice
         </button>
       </div>
 
       <div className="space-y-4">
         {announcements.map((a) => (
-          <div key={a._id} className="glass-card p-6 border-l-4 border-l-amber-500 space-y-2">
-            <div className="flex justify-between items-center">
-              <h3 className="font-bold text-base text-white">{a.title}</h3>
+          <div key={a._id} className="glass-card p-4 sm:p-6 border-l-4 border-l-amber-500 space-y-2">
+            <div className="flex justify-between items-center gap-2">
+              <h3 className="font-bold text-sm sm:text-base text-white">{a.title}</h3>
               <button onClick={() => handleDelete(a._id)} className="p-1 text-slate-400 hover:text-red-400">
                 <Trash2 className="w-4 h-4" />
               </button>
@@ -77,8 +77,8 @@ const Announcements = () => {
 
       <AnimatePresence>
         {showModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
-            <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} className="glass-card bg-damale-navy-800 p-6 max-w-md w-full space-y-4">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm overflow-y-auto">
+            <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} className="glass-card bg-damale-navy-800 p-5 sm:p-6 max-w-md w-full space-y-4 my-8 max-h-[90vh] overflow-y-auto">
               <div className="flex justify-between items-center border-b border-damale-navy-700 pb-3">
                 <h3 className="font-bold text-lg text-white">Broadcast School Notice</h3>
                 <button onClick={() => setShowModal(false)}><X className="w-5 h-5 text-slate-400" /></button>

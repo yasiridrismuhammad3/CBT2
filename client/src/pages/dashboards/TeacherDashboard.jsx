@@ -39,29 +39,29 @@ const TeacherDashboard = () => {
   return (
     <div className="space-y-8">
       {/* Header Banner */}
-      <div className="glass-card p-6 sm:p-8 bg-gradient-to-r from-damale-navy-800 to-blue-950 border border-damale-navy-700/80 text-white flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+      <div className="glass-card p-5 sm:p-8 bg-gradient-to-r from-damale-navy-800 to-blue-950 border border-damale-navy-700/80 text-white flex flex-col md:flex-row justify-between items-start md:items-center gap-4 sm:gap-6">
         <div>
           <div className="flex items-center gap-2 text-blue-400 font-bold text-xs uppercase tracking-wider mb-1">
             <UserCheck className="w-4 h-4" /> Teacher Control Center
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+          <h1 className="text-xl sm:text-3xl font-extrabold tracking-tight">
             Welcome, {user?.fullName}
           </h1>
-          <p className="text-slate-300 text-sm mt-1">
+          <p className="text-slate-300 text-xs sm:text-sm mt-1">
             Manage CBT Question Banks, Create Examinations, and Review Student Performance.
           </p>
         </div>
 
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-2 sm:gap-3 w-full md:w-auto">
           <button
             onClick={() => navigate('/management/exams/create')}
-            className="btn-gold text-xs py-2.5 px-4"
+            className="btn-gold text-xs py-2.5 px-4 flex-1 md:flex-initial"
           >
-            <PlusCircle className="w-4 h-4" /> Create New CBT Exam
+            <PlusCircle className="w-4 h-4" /> Create CBT Exam
           </button>
           <button
             onClick={() => navigate('/management/questions')}
-            className="btn-navy text-xs py-2.5 px-4 border border-damale-navy-600"
+            className="btn-navy text-xs py-2.5 px-4 border border-damale-navy-600 flex-1 md:flex-initial"
           >
             <HelpCircle className="w-4 h-4" /> Add Questions
           </button>

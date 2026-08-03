@@ -60,62 +60,64 @@ const TeacherManagement = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2">
-            <Users className="w-7 h-7 text-blue-500" /> Teacher Staff Directory
+          <h1 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+            <Users className="w-6 h-6 sm:w-7 sm:h-7 text-blue-500" /> Teacher Staff Directory
           </h1>
           <p className="text-xs text-slate-500">Manage teaching staff accounts and subject assignments.</p>
         </div>
 
         <button
           onClick={() => setShowAddModal(true)}
-          className="btn-gold text-xs py-2.5 px-4 font-bold uppercase tracking-wider"
+          className="btn-gold text-xs py-2.5 px-4 font-bold uppercase tracking-wider w-full sm:w-auto"
         >
           <Plus className="w-4 h-4" /> Add Teacher
         </button>
       </div>
 
       <div className="glass-card overflow-hidden">
-        <table className="w-full text-left border-collapse text-xs">
-          <thead>
-            <tr className="bg-slate-100 dark:bg-damale-navy-900 border-b border-slate-200 dark:border-damale-navy-700 text-[11px] font-black uppercase text-slate-500 dark:text-slate-400">
-              <th className="p-4">Teacher Name</th>
-              <th className="p-4">Email Address</th>
-              <th className="p-4">Assigned Subjects</th>
-              <th className="p-4 text-right">Actions</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-slate-200 dark:divide-damale-navy-700/60">
-            {teachers.map((t) => (
-              <tr key={t._id} className="hover:bg-slate-100/50 dark:hover:bg-damale-navy-700/30">
-                <td className="p-4 font-bold text-slate-900 dark:text-white">{t.fullName}</td>
-                <td className="p-4 text-slate-400">{t.email}</td>
-                <td className="p-4">
-                  <div className="flex flex-wrap gap-1">
-                    {(t.assignedSubjects || []).map((s) => (
-                      <span key={s._id || s} className="px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 text-[10px] font-bold">
-                        {s.name || 'Subject'}
-                      </span>
-                    ))}
-                  </div>
-                </td>
-                <td className="p-4 text-right space-x-2">
-                  <button onClick={() => handleDelete(t._id, t.fullName)} className="p-1.5 rounded bg-red-500/10 text-red-500">
-                    <Trash2 className="w-4 h-4" />
-                  </button>
-                </td>
+        <div className="overflow-x-auto min-w-full block">
+          <table className="w-full text-left border-collapse text-xs min-w-[550px]">
+            <thead>
+              <tr className="bg-slate-100 dark:bg-damale-navy-900 border-b border-slate-200 dark:border-damale-navy-700 text-[11px] font-black uppercase text-slate-500 dark:text-slate-400">
+                <th className="p-4">Teacher Name</th>
+                <th className="p-4">Email Address</th>
+                <th className="p-4">Assigned Subjects</th>
+                <th className="p-4 text-right">Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-damale-navy-700/60">
+              {teachers.map((t) => (
+                <tr key={t._id} className="hover:bg-slate-100/50 dark:hover:bg-damale-navy-700/30">
+                  <td className="p-4 font-bold text-slate-900 dark:text-white whitespace-nowrap">{t.fullName}</td>
+                  <td className="p-4 text-slate-400 whitespace-nowrap">{t.email}</td>
+                  <td className="p-4">
+                    <div className="flex flex-wrap gap-1">
+                      {(t.assignedSubjects || []).map((s) => (
+                        <span key={s._id || s} className="px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 text-[10px] font-bold">
+                          {s.name || 'Subject'}
+                        </span>
+                      ))}
+                    </div>
+                  </td>
+                  <td className="p-4 text-right space-x-2 whitespace-nowrap">
+                    <button onClick={() => handleDelete(t._id, t.fullName)} className="p-1.5 rounded bg-red-500/10 text-red-500">
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
 
       {/* Add Teacher Modal */}
       <AnimatePresence>
         {showAddModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
-            <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} className="glass-card bg-damale-navy-800 p-6 max-w-md w-full space-y-4">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm overflow-y-auto">
+            <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} className="glass-card bg-damale-navy-800 p-5 sm:p-6 max-w-md w-full space-y-4 my-8 max-h-[90vh] overflow-y-auto">
               <div className="flex justify-between items-center border-b border-damale-navy-700 pb-3">
                 <h3 className="font-bold text-lg text-white">Add Teaching Staff</h3>
                 <button onClick={() => setShowAddModal(false)}><X className="w-5 h-5 text-slate-400" /></button>

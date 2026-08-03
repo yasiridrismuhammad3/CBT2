@@ -87,12 +87,12 @@ const ExamBuilder = () => {
   });
 
   return (
-    <div className="max-w-4xl mx-auto space-y-8">
+    <div className="max-w-4xl mx-auto space-y-6 sm:space-y-8">
 
       <div className="flex justify-between items-center border-b border-slate-700/60 pb-4">
         <div>
-          <h1 className="text-2xl font-black text-white flex items-center gap-2">
-            <FileSpreadsheet className="w-7 h-7 text-damale-gold-500" /> CBT Examination Wizard
+          <h1 className="text-xl sm:text-2xl font-black text-white flex items-center gap-2">
+            <FileSpreadsheet className="w-6 h-6 sm:w-7 sm:h-7 text-damale-gold-500" /> CBT Examination Wizard
           </h1>
           <p className="text-xs text-slate-400">Configure exam title, subject, duration, question selection, and target classes.</p>
         </div>
@@ -101,7 +101,7 @@ const ExamBuilder = () => {
       <form onSubmit={handleSubmit} className="space-y-6">
 
         {/* Step 1: Exam Settings */}
-        <div className="glass-card p-6 space-y-4">
+        <div className="glass-card p-4 sm:p-6 space-y-4">
           <h3 className="font-bold text-base text-white border-b border-slate-700 pb-2">
             1. Exam Details & Scheduling
           </h3>

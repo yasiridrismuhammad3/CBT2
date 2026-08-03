@@ -14,15 +14,30 @@ import {
   X,
   PlusCircle,
   Clock,
-  UserCheck
+  UserCheck,
+  ShieldCheck
 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Sidebar = ({ isOpen, onClose }) => {
-  const { user } = useAuth();
+  const { user, login } = useAuth();
+  const navigate = useNavigate();
   if (!user) return null;
 
   const role = user.role;
+
+  const handleQuickSwitch = async (targetRole) => {
+    try {
+      if (targetRole === 'admin') await login('admin@damale.edu.ng', 'Admin@123');
+      if (targetRole === 'teacher') await login('teacher@damale.edu.ng', 'Teacher@123');
+      if (targetRole === 'student') await login('DSK/2026/001', 'Student@123');
+      onClose();
+      navigate('/dashboard');
+    } catch (err) {
+      console.error('Quick switch failed:', err);
+    }
+  };
 
   const adminLinks = [
     { name: 'Overview', path: '/dashboard', icon: LayoutDashboard },
@@ -95,7 +110,7 @@ const Sidebar = ({ isOpen, onClose }) => {
 
               {/* User Identity Box */}
               <div className="p-4 mx-4 mt-4 bg-slate-100 dark:bg-damale-navy-900/80 rounded-xl border border-slate-200/80 dark:border-damale-navy-700/80 flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-damale-gold-500 to-amber-600 text-white font-black flex items-center justify-center shadow-md">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-damale-gold-500 to-amber-600 text-white font-black flex items-center justify-center shadow-md flex-shrink-0">
                   {user.fullName.charAt(0)}
                 </div>
                 <div className="truncate">
@@ -103,6 +118,43 @@ const Sidebar = ({ isOpen, onClose }) => {
                   <p className="text-[11px] font-semibold text-damale-gold-500 uppercase tracking-wide">
                     {user.role} {user.dsNumber ? `• ${user.dsNumber}` : ''}
                   </p>
+                </div>
+              </div>
+
+              {/* Demo Role Switcher (Mobile Drawer) */}
+              <div className="mx-4 mt-3 p-2 bg-slate-100 dark:bg-damale-navy-900 rounded-xl border border-slate-200 dark:border-damale-navy-700 text-xs">
+                <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-1.5 px-1">Switch Demo Account:</p>
+                <div className="grid grid-cols-3 gap-1">
+                  <button
+                    onClick={() => handleQuickSwitch('admin')}
+                    className={`py-1.5 px-2 rounded-lg text-[11px] font-bold flex items-center justify-center gap-1 transition ${
+                      user?.role === 'admin'
+                        ? 'bg-damale-navy-800 text-damale-gold-400 shadow-sm'
+                        : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                    }`}
+                  >
+                    <ShieldCheck className="w-3 h-3" /> Admin
+                  </button>
+                  <button
+                    onClick={() => handleQuickSwitch('teacher')}
+                    className={`py-1.5 px-2 rounded-lg text-[11px] font-bold flex items-center justify-center gap-1 transition ${
+                      user?.role === 'teacher'
+                        ? 'bg-damale-navy-800 text-damale-gold-400 shadow-sm'
+                        : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                    }`}
+                  >
+                    <UserCheck className="w-3 h-3" /> Teacher
+                  </button>
+                  <button
+                    onClick={() => handleQuickSwitch('student')}
+                    className={`py-1.5 px-2 rounded-lg text-[11px] font-bold flex items-center justify-center gap-1 transition ${
+                      user?.role === 'student'
+                        ? 'bg-damale-navy-800 text-damale-gold-400 shadow-sm'
+                        : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                    }`}
+                  >
+                    <GraduationCap className="w-3 h-3" /> Student
+                  </button>
                 </div>
               </div>
 

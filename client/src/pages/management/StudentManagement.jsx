@@ -129,22 +129,22 @@ const StudentManagement = () => {
       {/* Header Banner */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2">
-            <GraduationCap className="w-7 h-7 text-damale-gold-500" /> Student Directory Management
+          <h1 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+            <GraduationCap className="w-6 h-6 sm:w-7 sm:h-7 text-damale-gold-500" /> Student Directory Management
           </h1>
           <p className="text-xs text-slate-500">Manage registered students, DS numbers, class assignments & password resets.</p>
         </div>
 
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-2 sm:gap-3 w-full sm:w-auto">
           <button
             onClick={() => setShowImportModal(true)}
-            className="btn-navy text-xs py-2.5 px-4 border border-damale-navy-600"
+            className="btn-navy text-xs py-2.5 px-3.5 border border-damale-navy-600 flex-1 sm:flex-initial"
           >
             <Upload className="w-4 h-4" /> Bulk CSV Import
           </button>
           <button
             onClick={() => setShowAddModal(true)}
-            className="btn-gold text-xs py-2.5 px-4 font-bold uppercase tracking-wider"
+            className="btn-gold text-xs py-2.5 px-4 font-bold uppercase tracking-wider flex-1 sm:flex-initial"
           >
             <Plus className="w-4 h-4" /> Add Student
           </button>
@@ -168,7 +168,7 @@ const StudentManagement = () => {
           <select
             value={selectedClass}
             onChange={(e) => setSelectedClass(e.target.value)}
-            className="glass-input py-2 text-xs"
+            className="glass-input py-2 text-xs w-full sm:w-auto"
           >
             <option value="">All Classes</option>
             <option value="SS 3A">SS 3A</option>
@@ -180,10 +180,10 @@ const StudentManagement = () => {
         </div>
       </div>
 
-      {/* Table */}
+      {/* Table Wrapper */}
       <div className="glass-card overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse">
+        <div className="overflow-x-auto min-w-full block">
+          <table className="w-full text-left border-collapse min-w-[640px]">
             <thead>
               <tr className="bg-slate-100 dark:bg-damale-navy-900 border-b border-slate-200 dark:border-damale-navy-700 text-[11px] font-black uppercase text-slate-500 dark:text-slate-400">
                 <th className="p-4">DS Number</th>
@@ -198,20 +198,20 @@ const StudentManagement = () => {
               {students.length > 0 ? (
                 students.map((student) => (
                   <tr key={student._id} className="hover:bg-slate-100/50 dark:hover:bg-damale-navy-700/30 transition">
-                    <td className="p-4 font-mono font-bold text-damale-gold-500">
+                    <td className="p-4 font-mono font-bold text-damale-gold-500 whitespace-nowrap">
                       {student.dsNumber || 'N/A'}
                     </td>
-                    <td className="p-4 font-bold text-slate-900 dark:text-white">
+                    <td className="p-4 font-bold text-slate-900 dark:text-white whitespace-nowrap">
                       {student.fullName}
                     </td>
-                    <td className="p-4">
+                    <td className="p-4 whitespace-nowrap">
                       <span className="px-2 py-0.5 rounded bg-damale-navy-700 text-slate-200 font-semibold">
                         {student.class || 'Unassigned'}
                       </span>
                     </td>
-                    <td className="p-4 text-slate-400">{student.gender}</td>
-                    <td className="p-4 text-slate-400">{student.email}</td>
-                    <td className="p-4 text-right space-x-2">
+                    <td className="p-4 text-slate-400 whitespace-nowrap">{student.gender}</td>
+                    <td className="p-4 text-slate-400 whitespace-nowrap">{student.email}</td>
+                    <td className="p-4 text-right space-x-2 whitespace-nowrap">
                       <button
                         onClick={() => handleResetPassword(student._id, student.fullName)}
                         className="p-1.5 rounded-lg bg-amber-500/10 text-amber-500 hover:bg-amber-500/20"
@@ -244,12 +244,12 @@ const StudentManagement = () => {
       {/* Add Student Modal */}
       <AnimatePresence>
         {showAddModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm overflow-y-auto">
             <motion.div
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
-              className="glass-card bg-damale-navy-800 border border-damale-navy-700 p-6 max-w-md w-full space-y-4"
+              className="glass-card bg-damale-navy-800 border border-damale-navy-700 p-5 sm:p-6 max-w-md w-full space-y-4 my-8 max-h-[90vh] overflow-y-auto"
             >
               <div className="flex justify-between items-center border-b border-damale-navy-700 pb-3">
                 <h3 className="font-bold text-lg text-white">Register New Student</h3>

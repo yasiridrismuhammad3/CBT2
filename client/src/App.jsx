@@ -36,7 +36,7 @@ const AppLayout = ({ children }) => {
     <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-damale-navy-900 text-slate-900 dark:text-slate-100 font-sans transition-colors duration-200">
       <Navbar onToggleSidebar={() => setSidebarOpen(true)} />
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
-      <main className="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8">
+      <main className="flex-1 max-w-7xl w-full mx-auto p-3 sm:p-6 lg:p-8">
         {children}
       </main>
     </div>
