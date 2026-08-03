@@ -14,6 +14,7 @@ import TeacherLogin from './pages/auth/TeacherLogin';
 import AdminLogin from './pages/auth/AdminLogin';
 
 import MainDashboardRouter from './pages/dashboards/MainDashboardRouter';
+import AdminSecurityDashboard from './pages/dashboards/AdminSecurityDashboard';
 import TakeExam from './pages/exam/TakeExam';
 import ExamResultView from './pages/exam/ExamResultView';
 
@@ -54,7 +55,7 @@ const App = () => {
           <Route path="/auth/teacher" element={<TeacherLogin />} />
           <Route path="/auth/admin" element={<AdminLogin />} />
 
-          {/* Full-Screen CBT Examination Engine Route (No App Shell navbar to prevent distraction) */}
+          {/* Full-Screen CBT Examination Engine — student only */}
           <Route
             path="/exam/:id/take"
             element={
@@ -71,23 +72,120 @@ const App = () => {
               <ProtectedRoute>
                 <AppLayout>
                   <Routes>
+                    {/* Dashboard — role-based routing inside */}
                     <Route path="/dashboard" element={<MainDashboardRouter />} />
-                    <Route path="/student/result/:id" element={<ExamResultView />} />
-                    
-                    {/* Management Routes */}
-                    <Route path="/management/students" element={<StudentManagement />} />
-                    <Route path="/management/teachers" element={<TeacherManagement />} />
-                    <Route path="/management/subjects" element={<SubjectManagement />} />
-                    <Route path="/management/questions" element={<QuestionBank />} />
-                    <Route path="/management/exams" element={<ExamBuilder />} />
-                    <Route path="/management/exams/create" element={<ExamBuilder />} />
-                    <Route path="/management/results" element={<ResultsAndAnalytics />} />
-                    <Route path="/management/announcements" element={<Announcements />} />
 
-                    {/* Student Routes */}
-                    <Route path="/student/exams" element={<AvailableExams />} />
-                    <Route path="/student/results" element={<StudentResults />} />
-                    <Route path="/student/profile" element={<StudentProfile />} />
+                    {/* Exam Result — student only */}
+                    <Route
+                      path="/student/result/:id"
+                      element={
+                        <ProtectedRoute allowedRoles={['student']}>
+                          <ExamResultView />
+                        </ProtectedRoute>
+                      }
+                    />
+
+                    {/* ===== ADMIN-ONLY routes ===== */}
+                    <Route
+                      path="/management/students"
+                      element={
+                        <ProtectedRoute allowedRoles={['admin']}>
+                          <StudentManagement />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="/management/teachers"
+                      element={
+                        <ProtectedRoute allowedRoles={['admin']}>
+                          <TeacherManagement />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="/management/subjects"
+                      element={
+                        <ProtectedRoute allowedRoles={['admin']}>
+                          <SubjectManagement />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="/admin/security"
+                      element={
+                        <ProtectedRoute allowedRoles={['admin']}>
+                          <AdminSecurityDashboard />
+                        </ProtectedRoute>
+                      }
+                    />
+
+                    {/* ===== ADMIN + TEACHER routes ===== */}
+                    <Route
+                      path="/management/questions"
+                      element={
+                        <ProtectedRoute allowedRoles={['admin', 'teacher']}>
+                          <QuestionBank />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="/management/exams"
+                      element={
+                        <ProtectedRoute allowedRoles={['admin', 'teacher']}>
+                          <ExamBuilder />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="/management/exams/create"
+                      element={
+                        <ProtectedRoute allowedRoles={['admin', 'teacher']}>
+                          <ExamBuilder />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="/management/results"
+                      element={
+                        <ProtectedRoute allowedRoles={['admin', 'teacher']}>
+                          <ResultsAndAnalytics />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="/management/announcements"
+                      element={
+                        <ProtectedRoute allowedRoles={['admin', 'teacher']}>
+                          <Announcements />
+                        </ProtectedRoute>
+                      }
+                    />
+
+                    {/* ===== STUDENT-ONLY routes ===== */}
+                    <Route
+                      path="/student/exams"
+                      element={
+                        <ProtectedRoute allowedRoles={['student']}>
+                          <AvailableExams />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="/student/results"
+                      element={
+                        <ProtectedRoute allowedRoles={['student']}>
+                          <StudentResults />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="/student/profile"
+                      element={
+                        <ProtectedRoute allowedRoles={['student']}>
+                          <StudentProfile />
+                        </ProtectedRoute>
+                      }
+                    />
 
                     {/* Fallback */}
                     <Route path="*" element={<Navigate to="/dashboard" replace />} />

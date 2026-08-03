@@ -10,35 +10,24 @@ import {
   FileSpreadsheet,
   Award,
   Bell,
-  Settings,
   X,
   PlusCircle,
   Clock,
   UserCheck,
-  ShieldCheck
+  ShieldCheck,
+  ShieldAlert
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Sidebar = ({ isOpen, onClose }) => {
-  const { user, login } = useAuth();
+  const { user } = useAuth();
   const navigate = useNavigate();
   if (!user) return null;
 
   const role = user.role;
 
-  const handleQuickSwitch = async (targetRole) => {
-    try {
-      if (targetRole === 'admin') await login('admin@damale.edu.ng', 'Admin@123');
-      if (targetRole === 'teacher') await login('teacher@damale.edu.ng', 'Teacher@123');
-      if (targetRole === 'student') await login('DSK/2026/001', 'Student@123');
-      onClose();
-      navigate('/dashboard');
-    } catch (err) {
-      console.error('Quick switch failed:', err);
-    }
-  };
-
+  // ADMIN-ONLY navigation links
   const adminLinks = [
     { name: 'Overview', path: '/dashboard', icon: LayoutDashboard },
     { name: 'Students', path: '/management/students', icon: GraduationCap },
@@ -48,8 +37,10 @@ const Sidebar = ({ isOpen, onClose }) => {
     { name: 'Exams & CBT', path: '/management/exams', icon: FileSpreadsheet },
     { name: 'Results & Analytics', path: '/management/results', icon: Award },
     { name: 'Announcements', path: '/management/announcements', icon: Bell },
+    { name: 'Security Center', path: '/admin/security', icon: ShieldAlert },
   ];
 
+  // TEACHER navigation links — no access to students/teachers/subjects management
   const teacherLinks = [
     { name: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
     { name: 'Question Bank', path: '/management/questions', icon: HelpCircle },
@@ -59,6 +50,7 @@ const Sidebar = ({ isOpen, onClose }) => {
     { name: 'Announcements', path: '/management/announcements', icon: Bell },
   ];
 
+  // STUDENT navigation links — only student pages
   const studentLinks = [
     { name: 'Student Dashboard', path: '/dashboard', icon: LayoutDashboard },
     { name: 'Available Exams', path: '/student/exams', icon: Clock },
@@ -67,6 +59,12 @@ const Sidebar = ({ isOpen, onClose }) => {
   ];
 
   const links = role === 'admin' ? adminLinks : role === 'teacher' ? teacherLinks : studentLinks;
+
+  const roleBadgeColors = {
+    admin: 'bg-purple-500/20 text-purple-300 border-purple-500/30',
+    teacher: 'bg-blue-500/20 text-blue-300 border-blue-500/30',
+    student: 'bg-amber-500/20 text-amber-300 border-amber-500/30',
+  };
 
   return (
     <AnimatePresence>
@@ -109,52 +107,25 @@ const Sidebar = ({ isOpen, onClose }) => {
               </div>
 
               {/* User Identity Box */}
-              <div className="p-4 mx-4 mt-4 bg-slate-100 dark:bg-damale-navy-900/80 rounded-xl border border-slate-200/80 dark:border-damale-navy-700/80 flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-damale-gold-500 to-amber-600 text-white font-black flex items-center justify-center shadow-md flex-shrink-0">
-                  {user.fullName.charAt(0)}
+              <div className="p-4 mx-4 mt-4 bg-slate-100 dark:bg-damale-navy-900/80 rounded-xl border border-slate-200/80 dark:border-damale-navy-700/80">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-damale-gold-500 to-amber-600 text-white font-black flex items-center justify-center shadow-md flex-shrink-0">
+                    {user.fullName.charAt(0)}
+                  </div>
+                  <div className="truncate min-w-0">
+                    <p className="text-xs font-bold text-slate-900 dark:text-white truncate">{user.fullName}</p>
+                    {user.dsNumber && (
+                      <p className="text-[10px] font-mono text-slate-500 dark:text-slate-400 truncate">{user.dsNumber}</p>
+                    )}
+                  </div>
                 </div>
-                <div className="truncate">
-                  <p className="text-xs font-bold text-slate-900 dark:text-white truncate">{user.fullName}</p>
-                  <p className="text-[11px] font-semibold text-damale-gold-500 uppercase tracking-wide">
-                    {user.role} {user.dsNumber ? `• ${user.dsNumber}` : ''}
-                  </p>
-                </div>
-              </div>
-
-              {/* Demo Role Switcher (Mobile Drawer) */}
-              <div className="mx-4 mt-3 p-2 bg-slate-100 dark:bg-damale-navy-900 rounded-xl border border-slate-200 dark:border-damale-navy-700 text-xs">
-                <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-1.5 px-1">Switch Demo Account:</p>
-                <div className="grid grid-cols-3 gap-1">
-                  <button
-                    onClick={() => handleQuickSwitch('admin')}
-                    className={`py-1.5 px-2 rounded-lg text-[11px] font-bold flex items-center justify-center gap-1 transition ${
-                      user?.role === 'admin'
-                        ? 'bg-damale-navy-800 text-damale-gold-400 shadow-sm'
-                        : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-                    }`}
-                  >
-                    <ShieldCheck className="w-3 h-3" /> Admin
-                  </button>
-                  <button
-                    onClick={() => handleQuickSwitch('teacher')}
-                    className={`py-1.5 px-2 rounded-lg text-[11px] font-bold flex items-center justify-center gap-1 transition ${
-                      user?.role === 'teacher'
-                        ? 'bg-damale-navy-800 text-damale-gold-400 shadow-sm'
-                        : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-                    }`}
-                  >
-                    <UserCheck className="w-3 h-3" /> Teacher
-                  </button>
-                  <button
-                    onClick={() => handleQuickSwitch('student')}
-                    className={`py-1.5 px-2 rounded-lg text-[11px] font-bold flex items-center justify-center gap-1 transition ${
-                      user?.role === 'student'
-                        ? 'bg-damale-navy-800 text-damale-gold-400 shadow-sm'
-                        : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-                    }`}
-                  >
-                    <GraduationCap className="w-3 h-3" /> Student
-                  </button>
+                <div className="mt-3">
+                  <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-black uppercase border ${roleBadgeColors[role] || roleBadgeColors.student}`}>
+                    {role === 'admin' && <ShieldCheck className="w-3 h-3" />}
+                    {role === 'teacher' && <UserCheck className="w-3 h-3" />}
+                    {role === 'student' && <GraduationCap className="w-3 h-3" />}
+                    {role} Portal
+                  </span>
                 </div>
               </div>
 
@@ -188,7 +159,7 @@ const Sidebar = ({ isOpen, onClose }) => {
               <p className="text-[11px] font-semibold text-slate-400 dark:text-slate-500">
                 DAMALE SCHOOL KATSINA © 2026
               </p>
-              <p className="text-[10px] text-damale-gold-500 font-medium">CBT Engine v1.0.0</p>
+              <p className="text-[10px] text-damale-gold-500 font-medium">CBT Engine v1.0.0 — Secured</p>
             </div>
           </motion.aside>
         </>
