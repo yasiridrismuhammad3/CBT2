@@ -92,7 +92,7 @@ const Sidebar = ({ isOpen, onClose }) => {
               <div className="h-16 px-6 flex items-center justify-between border-b border-slate-200 dark:border-damale-navy-700">
                 <div className="flex items-center gap-2">
                   <div className="w-8 h-8 rounded-lg bg-damale-gold-500 text-white font-bold flex items-center justify-center text-sm shadow">
-                    DSK
+                    DS
                   </div>
                   <span className="font-extrabold text-sm text-damale-navy-800 dark:text-white uppercase tracking-wider">
                     Portal Menu
@@ -139,10 +139,9 @@ const Sidebar = ({ isOpen, onClose }) => {
                       to={link.path}
                       onClick={onClose}
                       className={({ isActive }) =>
-                        `flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-sm transition-all duration-200 ${
-                          isActive
-                            ? 'bg-gradient-to-r from-damale-gold-500 to-amber-500 text-white font-bold shadow-md shadow-amber-500/20'
-                            : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-damale-navy-700/50 hover:text-damale-gold-500 dark:hover:text-damale-gold-400'
+                        `flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-sm transition-all duration-200 ${isActive
+                          ? 'bg-gradient-to-r from-damale-gold-500 to-amber-500 text-white font-bold shadow-md shadow-amber-500/20'
+                          : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-damale-navy-700/50 hover:text-damale-gold-500 dark:hover:text-damale-gold-400'
                         }`
                       }
                     >

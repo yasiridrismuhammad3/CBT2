@@ -23,7 +23,7 @@ const Navbar = ({ onToggleSidebar }) => {
   return (
     <header className="sticky top-0 z-30 bg-white/90 dark:bg-damale-navy-800/90 backdrop-blur-lg border-b border-slate-200 dark:border-damale-navy-700/60 transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-2">
-        
+
         {/* Left Side: Brand Logo & Title */}
         <div className="flex items-center gap-2 sm:gap-3 min-w-0">
           <button
@@ -37,7 +37,7 @@ const Navbar = ({ onToggleSidebar }) => {
           <div className="flex items-center gap-2.5 cursor-pointer min-w-0" onClick={() => navigate('/')}>
             {/* School Logo Emblem */}
             <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-damale-gold-500 to-amber-600 flex items-center justify-center text-white font-extrabold text-sm sm:text-lg shadow-lg shadow-amber-500/30 ring-2 ring-damale-gold-300 flex-shrink-0">
-              DSK
+              DS
             </div>
             <div className="min-w-0">
               <h1 className="font-extrabold text-xs sm:text-base tracking-wider text-damale-navy-800 dark:text-white uppercase leading-tight truncate">
@@ -52,37 +52,34 @@ const Navbar = ({ onToggleSidebar }) => {
 
         {/* Right Side: Quick Switch, Theme Toggle, User Profile */}
         <div className="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
-          
+
           {/* Quick Demo Role Switcher Toolbar (Desktop) */}
           <div className="hidden lg:flex items-center bg-slate-100 dark:bg-damale-navy-900 p-1 rounded-xl border border-slate-200 dark:border-damale-navy-700 text-xs font-semibold">
             <span className="px-2 text-slate-400 text-[10px] uppercase font-bold tracking-wider">Demo Switch:</span>
             <button
               onClick={() => handleQuickSwitch('admin')}
-              className={`px-2.5 py-1 rounded-lg transition flex items-center gap-1 ${
-                user?.role === 'admin'
-                  ? 'bg-damale-navy-800 text-damale-gold-400 shadow-sm'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-              }`}
+              className={`px-2.5 py-1 rounded-lg transition flex items-center gap-1 ${user?.role === 'admin'
+                ? 'bg-damale-navy-800 text-damale-gold-400 shadow-sm'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                }`}
             >
               <ShieldCheck className="w-3.5 h-3.5" /> Admin
             </button>
             <button
               onClick={() => handleQuickSwitch('teacher')}
-              className={`px-2.5 py-1 rounded-lg transition flex items-center gap-1 ${
-                user?.role === 'teacher'
-                  ? 'bg-damale-navy-800 text-damale-gold-400 shadow-sm'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-              }`}
+              className={`px-2.5 py-1 rounded-lg transition flex items-center gap-1 ${user?.role === 'teacher'
+                ? 'bg-damale-navy-800 text-damale-gold-400 shadow-sm'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                }`}
             >
               <UserCheck className="w-3.5 h-3.5" /> Teacher
             </button>
             <button
               onClick={() => handleQuickSwitch('student')}
-              className={`px-2.5 py-1 rounded-lg transition flex items-center gap-1 ${
-                user?.role === 'student'
-                  ? 'bg-damale-navy-800 text-damale-gold-400 shadow-sm'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-              }`}
+              className={`px-2.5 py-1 rounded-lg transition flex items-center gap-1 ${user?.role === 'student'
+                ? 'bg-damale-navy-800 text-damale-gold-400 shadow-sm'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                }`}
             >
               <GraduationCap className="w-3.5 h-3.5" /> Student
             </button>
